@@ -112,6 +112,10 @@ $(document).ready(function(){
 			var c = snake_array[i];
 			//Lets paint 10px wide cells
 			paint_cell(c.x, c.y);
+<<<<<<< HEAD
+=======
+	
+>>>>>>> origin/master
 		}
 		
 		//Lets paint the food

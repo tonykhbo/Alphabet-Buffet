@@ -109,8 +109,15 @@ $(document).ready(function(){
 		for(var i = 0; i < snake_array.length; i++)
 		{
 			var c = snake_array[i];
+                        if (i == 0) {
+
+                            paint_head(c.x, c.y);
+                        }
+                        else {
+                            paint_cell(c.x, c.y);
+                        }
 			//Lets paint 10px wide cells
-			paint_cell(c.x, c.y);
+			
 		}
 		
 		//Lets paint the food
@@ -121,6 +128,15 @@ $(document).ready(function(){
 	}
 	
 	//Lets first create a generic function to paint cells
+        
+        function paint_head(x, y)
+	{
+                var img = new Image();
+                img.src = "/img/snake.jpg"
+                canvas_edit.drawImage(img,x*cw,y*cw);   
+		
+	}
+        
 	function paint_cell(x, y)
 	{
 		canvas_edit.fillStyle = "blue";

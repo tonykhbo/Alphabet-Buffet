@@ -24,6 +24,7 @@ $(document).ready(function(){
 		
 		//Lets move the snake now using a timer which will trigger the paint function
 		//every 60ms
+		paint();
 		//if(typeof game_loop != "undefined") clearInterval(game_loop);
 		//game_loop = setInterval(paint, 60);
 	}
@@ -110,12 +111,7 @@ $(document).ready(function(){
 		{
 			var c = snake_array[i];
 			//Lets paint 10px wide cells
-			if (c == 0) {
-				paint_head(c.x, c.y);
-			}
-			else {
-				paint_cell(c.x, c.y);	
-			}
+			paint_cell(c.x, c.y);
 		}
 		
 		//Lets paint the food
@@ -123,14 +119,6 @@ $(document).ready(function(){
 		//Lets paint the score
 		var score_text = "Score: " + score;
 		ctx.fillText(score_text, 5, h-5);
-	}
-	
-	function paint_head(x, y)
-	{
-		ctx.fillStyle = "blue";
-		ctx.fillRect(x*cw, y*cw, cw, cw);
-		ctx.strokeStyle = "white";
-		ctx.strokeRect(x*cw, y*cw, cw, cw);
 	}
 	
 	//Lets first create a generic function to paint cells

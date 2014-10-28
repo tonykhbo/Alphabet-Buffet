@@ -133,7 +133,7 @@ $(document).ready(function(){
 	{
                 var img = new Image();
                 img.src = "/img/snake.jpg"
-                ctx.drawImage(img,x*cw,y*cw);   
+                ctx.drawImage(img,x*cw,y*cw, 40,40);   
 		
 	}
         

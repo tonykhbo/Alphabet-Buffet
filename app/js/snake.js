@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	//Canvas stuff
 	var canvas = $("#canvas")[0];
-	var ctx = canvas.getContext("2d");
+	var canvas_edit = canvas.getContext("2d");
 	var w = $("#canvas").width();
 	var h = $("#canvas").height();
 	
@@ -56,10 +56,10 @@ $(document).ready(function(){
 	{
 		//To avoid the snake trail we need to paint the BG on every frame
 		//Lets paint the canvas now
-		ctx.fillStyle = "white";
-		ctx.fillRect(0, 0, w, h);
-		ctx.strokeStyle = "black";
-		ctx.strokeRect(0, 0, w, h);
+		canvas_edit.fillStyle = "white";
+		canvas_edit.fillRect(0, 0, w, h);
+		canvas_edit.strokeStyle = "black";
+		canvas_edit.strokeRect(0, 0, w, h);
 		
 		//The movement code for the snake to come here.
 		//The logic is simple
@@ -117,16 +117,16 @@ $(document).ready(function(){
 		paint_cell(food.x, food.y);
 		//Lets paint the score
 		var score_text = "Score: " + score;
-		ctx.fillText(score_text, 5, h-5);
+		canvas_edit.fillText(score_text, 5, h-5);
 	}
 	
 	//Lets first create a generic function to paint cells
 	function paint_cell(x, y)
 	{
-		ctx.fillStyle = "blue";
-		ctx.fillRect(x*cw, y*cw, cw, cw);
-		ctx.strokeStyle = "white";
-		ctx.strokeRect(x*cw, y*cw, cw, cw);
+		canvas_edit.fillStyle = "blue";
+		canvas_edit.fillRect(x*cw, y*cw, cw, cw);
+		canvas_edit.strokeStyle = "white";
+		canvas_edit.strokeRect(x*cw, y*cw, cw, cw);
 	}
 	
 	function check_collision(x, y, array)

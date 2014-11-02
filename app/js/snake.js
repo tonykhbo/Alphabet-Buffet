@@ -27,13 +27,13 @@ $(document).ready(function(){
 		//Lets move the snake now using a timer which will trigger the paint function
 		//every 60ms
 		if(typeof game_loop != "undefined") clearInterval(game_loop);
-		game_loop = setInterval(paint, 150);
+		game_loop = setInterval(paint, 300);
 	}
 	init();
 	
 	function create_snake()
 	{
-		var length = 5; //Length of the snake
+		var length = 3; //Length of the snake
 		snake_array = []; //Empty array to start with
 		for(var i = length-1; i>=0; i--)
 		{
@@ -58,8 +58,11 @@ $(document).ready(function(){
 	{
 		//To avoid the snake trail we need to paint the BG on every frame
 		//Lets paint the canvas now
-		ctx.fillStyle = "white";
-		ctx.fillRect(0, 0, w , h );
+		var img = new Image();
+		img.src = "/img/grass%20env/grassbg.png"
+                ctx.drawImage(img,0,0, w, h);
+		//ctx.fillStyle = "white";
+		//ctx.fillRect(0, 0, w , h );
 		ctx.strokeStyle = "black";
 		ctx.strokeRect(0, 0, w , h );
 		
@@ -112,10 +115,16 @@ $(document).ready(function(){
 		{
 			var c = snake_array[i];
                         if (i == 0) {
-                            paint_head(c.x, c.y);
+				paint_head(c.x, c.y);
                         }
+			else if (i == snake_array.length - 1) {
+				paint_tail_big (c.x, c.y);
+			}
+			else if (i == snake_array.length - 2) {
+				paint_tail_small(c.x, c.y);
+			}
                         else {
-                            paint_cell(c.x, c.y);
+				paint_cell(c.x, c.y);
                         }
 			//Lets paint 10px wide cells
 			
@@ -155,6 +164,18 @@ $(document).ready(function(){
 		ctx.fillRect(x*cw, y*cw, cw, cw);
 		ctx.strokeStyle = "white";
 		ctx.strokeRect(x*cw, y*cw, cw, cw);
+	}
+	
+	function paint_tail_big(x, y) {
+		var img = new Image();
+		img.src = "/img/grass%20env/60x60/tail-big.png"
+                ctx.drawImage(img,x*cw,y*cw); 
+	}
+	
+	function paint_tail_small(x, y) {
+		var img = new Image();
+		img.src = "/img/grass%20env/60x60/tail-small.png"
+                ctx.drawImage(img,x*cw,y*cw); 
 	}
 	
 	function check_collision(x, y, array)

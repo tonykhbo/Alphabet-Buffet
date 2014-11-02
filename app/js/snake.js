@@ -143,7 +143,7 @@ $(document).ready(function(){
 			img.src = "/img/grass%20env/60x60/snakehead-up.png"
 		}
 		else if (d == "down") {
-			img.src = "/img/grass%20env/60x60/snakehead.png"
+			img.src = "/img/grass%20env/60x60/snakehead-down.png"
 		}
                 ctx.drawImage(img,x*cw,y*cw);   
 		

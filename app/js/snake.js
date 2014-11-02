@@ -132,9 +132,20 @@ $(document).ready(function(){
         
         function paint_head(x, y)
 	{
-                var img = new Image();
-                img.src = "/img/snake.jpg"
-                ctx.drawImage(img,x*cw,y*cw, 40,40);   
+		var img = new Image();
+		if (d == "left") {
+			img.src = "/img/grass%20env/60x60/snakehead-left.png"
+		}
+		else if (d == "right") {
+			img.src = "/img/grass%20env/60x60/snakehead-right.png"
+		}
+                else if (d == "up") {
+			img.src = "/img/grass%20env/60x60/snakehead-up.png"
+		}
+		else if (d == "down") {
+			img.src = "/img/grass%20env/60x60/snakehead.png"
+		}
+                ctx.drawImage(img,x*cw,y*cw);   
 		
 	}
         

@@ -2,11 +2,13 @@ $(document).ready(function(){
 	//Canvas stuff
 	var canvas = $("#canvas")[0];
 	var ctx = canvas.getContext("2d");
+	ctx.canvas.width  = window.innerWidth;
+	ctx.canvas.height = window.innerHeight;
 	var w = $("#canvas").width();
 	var h = $("#canvas").height();
 	
 	//Lets save the cell width in a variable for easy control
-	var cw = 20;
+	var cw = 60;
 	var d;
 	var food;
 	var score;
@@ -25,7 +27,7 @@ $(document).ready(function(){
 		//Lets move the snake now using a timer which will trigger the paint function
 		//every 60ms
 		if(typeof game_loop != "undefined") clearInterval(game_loop);
-		game_loop = setInterval(paint, 60);
+		game_loop = setInterval(paint, 150);
 	}
 	init();
 	
@@ -57,9 +59,9 @@ $(document).ready(function(){
 		//To avoid the snake trail we need to paint the BG on every frame
 		//Lets paint the canvas now
 		ctx.fillStyle = "white";
-		ctx.fillRect(0, 0, w, h);
+		ctx.fillRect(0, 0, w , h );
 		ctx.strokeStyle = "black";
-		ctx.strokeRect(0, 0, w, h);
+		ctx.strokeRect(0, 0, w , h );
 		
 		//The movement code for the snake to come here.
 		//The logic is simple
@@ -78,7 +80,7 @@ $(document).ready(function(){
 		//This will restart the game if the snake hits the wall
 		//Lets add the code for body collision
 		//Now if the head of the snake bumps into its body, the game will restart
-		if(nx == -1 || nx == w/cw || ny == -1 || ny == h/cw || check_collision(nx, ny, snake_array))
+		if(nx == -1 || nx == Math.floor(w/cw) || ny == -1 || ny == Math.floor(h/cw) || check_collision(nx, ny, snake_array))
 		{
 			//restart game
 			init();
@@ -110,7 +112,6 @@ $(document).ready(function(){
 		{
 			var c = snake_array[i];
                         if (i == 0) {
-
                             paint_head(c.x, c.y);
                         }
                         else {
@@ -161,7 +162,7 @@ $(document).ready(function(){
 	$(document).keydown(function(e){
 		var key = e.which;
 		//We will add another clause to prevent reverse gear
-		if(key == "37" && d != "right") d = "left";
+		if(key == "37" && d != "right")d = "left";
 		else if(key == "38" && d != "down") d = "up";
 		else if(key == "39" && d != "left") d = "right";
 		else if(key == "40" && d != "up") d = "down";

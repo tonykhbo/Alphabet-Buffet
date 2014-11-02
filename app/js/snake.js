@@ -6,6 +6,16 @@ $(document).ready(function(){
 	ctx.canvas.height = window.innerHeight;
 	var w = $("#canvas").width();
 	var h = $("#canvas").height();
+	var word = "wooohoooo";
+	var token = word.split("");
+	var remaining_letters_in_array;
+	var letter_location_in_array = 0;
+	var snake_letter_array;
+	var snake_word_body_length;
+	
+	for (var i = 0;i < token.length; i++){
+		
+	}
 	
 	//Lets save the cell width in a variable for easy control
 	var cw = 60;
@@ -22,6 +32,10 @@ $(document).ready(function(){
 		create_snake();
 		create_food(); //Now we can see the food particle
 		//finally lets display the score
+		remaining_letters_in_array = token.length;
+		letter_location_in_array = 0;
+		snake_letter_array = [];
+		snake_word_body_length = 0;
 		score = 0;
 		
 		//Lets move the snake now using a timer which will trigger the paint function
@@ -47,8 +61,10 @@ $(document).ready(function(){
 	{
 		food = {
 			x: Math.round(Math.random()*(w-cw)/cw), 
-			y: Math.round(Math.random()*(h-cw)/cw), 
+			y: Math.round(Math.random()*(h-cw)/cw),
+			letter: token[letter_location_in_array]
 		};
+		remaining_letters_in_array--;
 		//This will create a cell with x/y between 0-44
 		//Because there are 45(450/10) positions accross the rows and columns
 	}
@@ -99,6 +115,10 @@ $(document).ready(function(){
 		{
 			var tail = {x: nx, y: ny};
 			score++;
+			//Put letter into snake letter array to add to body of snake;
+			//snake_letter_array.push(token[letter_location_in_array]);
+			letter_location_in_array++;
+			//snake_word_body_length++;
 			//Create new food
 			create_food();
 		}
@@ -124,14 +144,18 @@ $(document).ready(function(){
 				paint_tail_big(c.x, c.y);
 			}
                         else {
-				paint_cell(c.x, c.y);
+				paint_cell(c.x, c.y, i);
                         }
 			//Lets paint 10px wide cells
 			
 		}
 		
 		//Lets paint the food
-		paint_cell(food.x, food.y);
+		if (remaining_letters_in_array == 0){
+			init();
+			return;
+		}
+		paint_food(food.x, food.y, food.letter);
 		//Lets paint the score
 		var score_text = "Score: " + score;
 		ctx.fillText(score_text, 5, h-5);
@@ -158,12 +182,12 @@ $(document).ready(function(){
 		
 	}
         
-	function paint_cell(x, y)
+	function paint_cell(x, y, letter_location)
 	{
-		ctx.fillStyle = "blue";
-		ctx.fillRect(x*cw, y*cw, cw, cw);
-		ctx.strokeStyle = "white";
-		ctx.strokeRect(x*cw, y*cw, cw, cw);
+
+		var img = new Image();
+		img.src = "/img/letters/"+token[letter_location-1]+".png"
+                ctx.drawImage(img,x*cw,y*cw);
 	}
 	
 	function paint_tail_big(x, y) {
@@ -175,6 +199,13 @@ $(document).ready(function(){
 	function paint_tail_small(x, y) {
 		var img = new Image();
 		img.src = "/img/grass%20env/60x60/tail-small.png"
+                ctx.drawImage(img,x*cw,y*cw); 
+	}
+	
+	function paint_food(x, y, letter)
+	{
+		var img = new Image();
+		img.src = "/img/letters/"+letter+".png"
                 ctx.drawImage(img,x*cw,y*cw); 
 	}
 	
@@ -200,11 +231,5 @@ $(document).ready(function(){
 		else if(key == "40" && d != "up") d = "down";
 		//The snake is now keyboard controllable
 	})
-	
-	
-	
-	
-	
-	
-	
+
 })

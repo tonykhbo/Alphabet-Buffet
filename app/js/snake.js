@@ -118,10 +118,10 @@ $(document).ready(function(){
 				paint_head(c.x, c.y);
                         }
 			else if (i == snake_array.length - 1) {
-				paint_tail_big (c.x, c.y);
+				paint_tail_small (c.x, c.y);
 			}
 			else if (i == snake_array.length - 2) {
-				paint_tail_small(c.x, c.y);
+				paint_tail_big(c.x, c.y);
 			}
                         else {
 				paint_cell(c.x, c.y);

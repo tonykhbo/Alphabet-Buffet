@@ -6,7 +6,7 @@ $(document).ready(function(){
 	ctx.canvas.height = window.innerHeight;
 	var w = $("#canvas").width();
 	var h = $("#canvas").height();
-	var word = "helloworld";
+	var word = "supbitches";
 	var token = word.split("");
 	var remaining_letters_in_array;
 	var letter_location_in_array = 0;

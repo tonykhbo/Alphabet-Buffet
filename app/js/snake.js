@@ -30,10 +30,10 @@ $(document).ready(function(){
 	{
 		d = "right"; //default direction
 		create_snake();
+		letter_location_in_array = 0;
 		create_food(); //Now we can see the food particle
 		//finally lets display the score
 		remaining_letters_in_array = token.length;
-		letter_location_in_array = 0;
 		snake_letter_array = [];
 		snake_word_body_length = 0;
 		score = 0;
@@ -166,18 +166,25 @@ $(document).ready(function(){
         function paint_head(x, y)
 	{
 		var img = new Image();
-		if (d == "left") {
-			img.src = "img/grass%20env/60x60/snakehead-left.png"
+		var options = {
+			left:"img/grass%20env/60x60/snakehead-left.png",
+			right:"img/grass%20env/60x60/snakehead-right.png",
+			up:"img/grass%20env/60x60/snakehead-up.png",
+			down:"img/grass%20env/60x60/snakehead-down.png"
 		}
-		else if (d == "right") {
-			img.src = "img/grass%20env/60x60/snakehead-right.png"
-		}
-                else if (d == "up") {
-			img.src = "img/grass%20env/60x60/snakehead-up.png"
-		}
-		else if (d == "down") {
-			img.src = "img/grass%20env/60x60/snakehead-down.png"
-		}
+		img.src = options[d];
+//		if (d == "left") {
+//			img.src = "img/grass%20env/60x60/snakehead-left.png"
+//		}
+//		else if (d == "right") {
+//			img.src = "img/grass%20env/60x60/snakehead-right.png"
+//		}
+//                else if (d == "up") {
+//			img.src = "img/grass%20env/60x60/snakehead-up.png"
+//		}
+//		else if (d == "down") {
+//			img.src = "img/grass%20env/60x60/snakehead-down.png"
+//		}
                 ctx.drawImage(img,x*cw,y*cw);   
 		
 	}

@@ -6,30 +6,31 @@ $(document).ready(function(){
 	ctx.canvas.height = window.innerHeight;
 	var w = $("#canvas").width();
 	var h = $("#canvas").height();
-	var word = "fuckyouman";
-	var token = word.split("");
 	var remaining_letters_in_array;
 	var letter_location_in_array = 0;
 	var snake_letter_array;
 	var snake_word_body_length;
 	
-	for (var i = 0;i < token.length; i++){
-		
-	}
 	
 	//Lets save the cell width in a variable for easy control
 	var cw = 60;
 	var d;
 	var food;
 	var score;
+	var word;
+	var token;
 	
 	//Lets create the snake now
 	var snake_array; //an array of cells to make up the snake
+	var word_array = ["hello","cat","dog","elephant","school","orange","apple","green","red","blue","giraffe","skunk","cars","home"]
 	
 	function init()
 	{
 		d = "right"; //default direction
 		create_snake();
+		
+		word = word_array[Math.floor(Math.random() * word_array.length-1) + 0];
+		token = word.split("");
 		letter_location_in_array = 0;
 		create_food(); //Now we can see the food particle
 		//finally lets display the score
@@ -56,12 +57,13 @@ $(document).ready(function(){
 		}
 	}
 	
+	
 	//Lets create the food now
 	function create_food()
 	{
 		food = {
-			x: Math.round(Math.random()*(w-cw)/cw), 
-			y: Math.round(Math.random()*(h-cw)/cw),
+			x: Math.floor(Math.random()*(w-cw)/cw), 
+			y: Math.floor(Math.random()*(h-cw)/cw),
 			letter: token[letter_location_in_array]
 		};
 		remaining_letters_in_array--;

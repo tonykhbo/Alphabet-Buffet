@@ -75,7 +75,7 @@ $(document).ready(function(){
 		//To avoid the snake trail we need to paint the BG on every frame
 		//Lets paint the canvas now
 		var img = new Image();
-		img.src = "/img/grass%20env/grassbg.png"
+		img.src = "img/grass%20env/grassbg.png"
                 ctx.drawImage(img,0,0, w, h);
 		//ctx.fillStyle = "white";
 		//ctx.fillRect(0, 0, w , h );
@@ -167,16 +167,16 @@ $(document).ready(function(){
 	{
 		var img = new Image();
 		if (d == "left") {
-			img.src = "/img/grass%20env/60x60/snakehead-left.png"
+			img.src = "img/grass%20env/60x60/snakehead-left.png"
 		}
 		else if (d == "right") {
-			img.src = "/img/grass%20env/60x60/snakehead-right.png"
+			img.src = "img/grass%20env/60x60/snakehead-right.png"
 		}
                 else if (d == "up") {
-			img.src = "/img/grass%20env/60x60/snakehead-up.png"
+			img.src = "img/grass%20env/60x60/snakehead-up.png"
 		}
 		else if (d == "down") {
-			img.src = "/img/grass%20env/60x60/snakehead-down.png"
+			img.src = "img/grass%20env/60x60/snakehead-down.png"
 		}
                 ctx.drawImage(img,x*cw,y*cw);   
 		
@@ -186,26 +186,26 @@ $(document).ready(function(){
 	{
 
 		var img = new Image();
-		img.src = "/img/letters/"+token[letter_location-1]+".png"
+		img.src = "img/letters/"+token[letter_location-1]+".png"
                 ctx.drawImage(img,x*cw,y*cw);
 	}
 	
 	function paint_tail_big(x, y) {
 		var img = new Image();
-		img.src = "/img/grass%20env/60x60/tail-big.png"
+		img.src = "img/grass%20env/60x60/tail-big.png"
                 ctx.drawImage(img,x*cw,y*cw); 
 	}
 	
 	function paint_tail_small(x, y) {
 		var img = new Image();
-		img.src = "/img/grass%20env/60x60/tail-small.png"
+		img.src = "img/grass%20env/60x60/tail-small.png"
                 ctx.drawImage(img,x*cw,y*cw); 
 	}
 	
 	function paint_food(x, y, letter)
 	{
 		var img = new Image();
-		img.src = "/img/letters/"+letter+".png"
+		img.src = "img/letters/"+letter+".png"
                 ctx.drawImage(img,x*cw,y*cw); 
 	}
 	

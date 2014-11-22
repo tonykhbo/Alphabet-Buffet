@@ -33,6 +33,7 @@ $(document).ready(function(){
 	var grass = ["Bold","Chill","Doze","Fresh","Gift","Idea","Insect","Safe", "Search", "Skill", "Smooth", "Team", "Tower", "Travel", "Wise", "Artist", "Belt", "Blast", "Blue", "Bold", "Braid", "Bread", "Brush", "Cactus", "Candy", "Candy", "Chance", "Cherry", "Coal", "Corn", "Cotton", "Craft", "Crowd", "Disk", "Dress", "Dust", "Effort", "Enjoy", "Famous", "Flight", "Floss", "Friend", "Fruit", "Jelly", "Lemon", "Proud", "Success", "Thirsty", "Tulip", "Tunnel", "Violet"];
 	var space = ["Cosmic", "Capsule", "Space", "Meteor", "Alien", "Earth", "Rocket", "Comet", "Stars", "Moon", "Solar", "Asteroid", "Astronaut", "Gravity", "Eclipse", "Galaxy", "Rays", "Lunar", "Nebula", "Nova", "Orbit", "Ozone", "Planet", "Revolve", "Satellite", "Solstice", "Mercury", "Venus", "Mars", "Sun", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Explore", "Voyage", "Rover", "NASA", "Shuttle", "Launch", "Rings", "Mission", "Dipper", "Aurora", "Crater", "Cosmo", "Telescope", "Pilot", "Sunspot"];
 	var underwater = ["Diver", "Scuba", "Fish", "Marine", "Pearl", "Starfish", "Shark", "Coral", "Reef", "Fins", "Goggles", "Ocean", "Lake", "Sea", "Snorkel", "Algae", "Barnacle", "Clam", "Dolpin", "Conch", "Currents", "Crab", "Flouder", "Squid", "Jellyfish", "Kelp", "Lobster", "Manatee", "Mussel", "Narwhal", "Octopus", "Otter", "Oyster", "Sponge", "Squid", "Tuna", "Tides", "Urchin", "Waves", "Whale", "Swim", "Float", "Dive", "Ship", "Boat", "Stingray", "Trench", "Plankton"];
+	var school = ["Pencil", "Pen", "Notes", "Scissors", "Paper", "Folder", "Books", "Computer", "Clock", "Board", "Markers", "Teacher", "Chair", "Desk", "Ruler", "Notebook", "Backpack", "Calendar", "Schedule", "Highlight", "Quiz", "Test", "Homework", "Student", "Eraser", "Learn", "Study", "Reading", "Laptop", "Agenda", "Lunch", "Recess", "Math", "Science", "History", "English", "Numbers", "Project", "Report", "Essay", "Grades", "Gym", "Music", "Locker", "Tape", "Paperclip", "Friends", "School", "Class", "Clubs"];
 	
 	var word_array;
 	$(".start").click(start);
@@ -54,6 +55,7 @@ $(document).ready(function(){
 		if (bg == "grass") word_array = grass;
 		else if (bg == "space") word_array = space;
 		else if (bg == "underwater") word_array = underwater;
+		else if (bg == "school") word_array = school;
 		
 		//randomizing the selection of the word in the word array
 		word = word_array[Math.floor(Math.random() * word_array.length-1) + 0];
@@ -166,7 +168,10 @@ $(document).ready(function(){
 			game_loop = clearTimeout(game_loop);
 			var pause;
 			//wait before starting with new word;
+			//$("#word_spelt").html = "You spelled: "+word;
+			$('#word_modal').modal('show');
 			pause = setTimeout(start, 5000);
+			$("#word_modal").modal('hide');
 			return;
 		}
 		paint_food(food.x, food.y, food.letter);
@@ -281,11 +286,12 @@ $(document).ready(function(){
 			else if(key == "39" && d != "left") d = "right";
 			else if(key == "40" && d != "up") d = "down";
 		}	
-		else if(key == "80") pauseGame();
+		if(key == "80") pauseGame();
 		//The snake is now keyboard controllable
 		if(key == "13"){
-			game_loop = clearTimeout(game_loop);
 			$('#myModal').modal('show');
+			game_loop = clearTimeout(game_loop);
+
 		}
 	})
 

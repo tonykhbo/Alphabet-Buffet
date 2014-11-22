@@ -30,10 +30,11 @@ $(document).ready(function(){
 	var snake_array; //an array of cells to make up the snake
 	
 	//vocabulary arrays
-	var word_array = ["Bold","Chill","Doze","Fresh","Gift","Idea","Insect","Safe", "Search", "Skill", "Smooth", "Team", "Tower", "Travel", "Wise", "Artist", "Belt", "Blast", "Blue", "Bold", "Braid", "Bread", "Brush", "Cactus", "Candy", "Candy", "Chance", "Cherry", "Coal", "Corn", "Cotton", "Craft", "Crowd", "Disk", "Dress", "Dust", "Effort", "Enjoy", "Famous", "Flight", "Floss", "Friend", "Fruit", "Jelly", "Lemon", "Proud", "Success", "Thirsty", "Tulip", "Tunnel", "Violet"];
-	var space_word_array = ["Cosmic", "Capsule", "Space", "Meteor", "Alien", "Earth", "Rocket", "Comet", "Stars", "Moon", "Solar", "Asteroid", "Astronaut", "Gravity", "Eclipse", "Galaxy", "Rays", "Lunar", "Nebula", "Nova", "Orbit", "Ozone", "Planet", "Revolve", "Satellite", "Solstice", "Mercury", "Venus", "Mars", "Sun", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Explore", "Voyage", "Rover", "NASA", "Shuttle", "Launch", "Rings", "Mission", "Dipper", "Aurora", "Crater", "Cosmo", "Telescope", "Pilot", "Sunspot"];
-	var underwater_word_array = ["Diver", "Scuba", "Fish", "Marine", "Pearl", "Starfish", "Shark", "Coral", "Reef", "Fins", "Goggles", "Ocean", "Lake", "Sea", "Snorkel", "Algae", "Barnacle", "Clam", "Dolpin", "Conch", "Currents", "Crab", "Flouder", "Squid", "Jellyfish", "Kelp", "Lobster", "Manatee", "Mussel", "Narwhal", "Octopus", "Otter", "Oyster", "Sponge", "Squid", "Tuna", "Tides", "Urchin", "Waves", "Whale", "Swim", "Float", "Dive", "Ship", "Boat", "Stingray", "Trench", "Plankton"];
+	var grass = ["Bold","Chill","Doze","Fresh","Gift","Idea","Insect","Safe", "Search", "Skill", "Smooth", "Team", "Tower", "Travel", "Wise", "Artist", "Belt", "Blast", "Blue", "Bold", "Braid", "Bread", "Brush", "Cactus", "Candy", "Candy", "Chance", "Cherry", "Coal", "Corn", "Cotton", "Craft", "Crowd", "Disk", "Dress", "Dust", "Effort", "Enjoy", "Famous", "Flight", "Floss", "Friend", "Fruit", "Jelly", "Lemon", "Proud", "Success", "Thirsty", "Tulip", "Tunnel", "Violet"];
+	var space = ["Cosmic", "Capsule", "Space", "Meteor", "Alien", "Earth", "Rocket", "Comet", "Stars", "Moon", "Solar", "Asteroid", "Astronaut", "Gravity", "Eclipse", "Galaxy", "Rays", "Lunar", "Nebula", "Nova", "Orbit", "Ozone", "Planet", "Revolve", "Satellite", "Solstice", "Mercury", "Venus", "Mars", "Sun", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Explore", "Voyage", "Rover", "NASA", "Shuttle", "Launch", "Rings", "Mission", "Dipper", "Aurora", "Crater", "Cosmo", "Telescope", "Pilot", "Sunspot"];
+	var underwater = ["Diver", "Scuba", "Fish", "Marine", "Pearl", "Starfish", "Shark", "Coral", "Reef", "Fins", "Goggles", "Ocean", "Lake", "Sea", "Snorkel", "Algae", "Barnacle", "Clam", "Dolpin", "Conch", "Currents", "Crab", "Flouder", "Squid", "Jellyfish", "Kelp", "Lobster", "Manatee", "Mussel", "Narwhal", "Octopus", "Otter", "Oyster", "Sponge", "Squid", "Tuna", "Tides", "Urchin", "Waves", "Whale", "Swim", "Float", "Dive", "Ship", "Boat", "Stingray", "Trench", "Plankton"];
 	
+	var word_array;
 	$(".start").click(start);
 	
 	function start()
@@ -45,11 +46,16 @@ $(document).ready(function(){
 		//speed of the snake
 		difficulty = $(".difficulty").val();
 		//switch or directional
-		control = $(".control").val();
+		control = $(".controls").val();
 		
 		d = "right"; //default direction
 		create_snake();
+		//Changing vocabulary set based on setting 
+		if (bg == "grass") word_array = grass;
+		else if (bg == "space") word_array = space;
+		else if (bg == "underwater") word_array = underwater;
 		
+		//randomizing the selection of the word in the word array
 		word = word_array[Math.floor(Math.random() * word_array.length-1) + 0];
 		token = word.split("");
 		letter_location_in_array = 0;
@@ -63,7 +69,7 @@ $(document).ready(function(){
 		//Lets move the snake now using a timer which will trigger the paint function
 		//every 60ms
 		if(typeof game_loop != "undefined") clearInterval(game_loop);
-		game_loop = setInterval(paint, 300);
+		game_loop = setInterval(paint, difficulty);
 	}
 	//init();
 	
@@ -125,7 +131,7 @@ $(document).ready(function(){
 		if(nx == -1 || nx == Math.floor(w/cw) || ny == -1 || ny == Math.floor(h/cw))
 		{
 			//restart game
-			init();
+			start();
 			//Lets organize the code a bit now.
 			return;
 		}
@@ -153,7 +159,23 @@ $(document).ready(function(){
 		//The snake can now eat the food.
 		
 		snake_array.unshift(tail); //puts back the tail as the first cell
+		paint_snake();
 		
+		//Lets paint the food
+		if (remaining_letters_in_array == 0){
+			game_loop = clearTimeout(game_loop);
+			var pause;
+			//wait before starting with new word;
+			pause = setTimeout(start, 5000);
+			return;
+		}
+		paint_food(food.x, food.y, food.letter);
+		//Lets paint the score
+		var score_text = "Score: " + score;
+		ctx.fillText(score_text, 5, h-5);
+	}
+	
+	function paint_snake() {
 		for(var i = 0; i < snake_array.length; i++)
 		{
 			var c = snake_array[i];
@@ -172,19 +194,6 @@ $(document).ready(function(){
 			//Lets paint 10px wide cells
 			
 		}
-		
-		//Lets paint the food
-		if (remaining_letters_in_array == 0){
-			game_loop = clearTimeout(game_loop);
-			var pause;
-			//wait before starting with new word;
-			pause = setTimeout(start, 5000);
-			return;
-		}
-		paint_food(food.x, food.y, food.letter);
-		//Lets paint the score
-		var score_text = "Score: " + score;
-		ctx.fillText(score_text, 5, h-5);
 	}
 	
 	//Lets first create a generic function to paint cells
@@ -243,15 +252,41 @@ $(document).ready(function(){
 	}
 	
 	//Lets add the keyboard controls now
+	
+	var arrows = ["down","left","up","right"];
+	var arrows_index = 0;
 	$(document).keydown(function(e){
+	
 		var key = e.which;
 		//We will add another clause to prevent reverse gear
-		if(key == "37" && d != "right")d = "left";
-		else if(key == "38" && d != "down") d = "up";
-		else if(key == "39" && d != "left") d = "right";
-		else if(key == "40" && d != "up") d = "down";
+		if (control == "switch") {
+			if(key == "32") pauseGame(); //spacebar
+			else if(key == "16"){ //shift - rotate each click
+				d = arrows[arrows_index];
+				arrows_index++;
+				if (arrows_index == 4) {
+					arrows_index = 0;
+				}
+				var img = new Image();
+				img.src = "img/"+bg+"%20env/"+bg+"bg.png"
+				ctx.drawImage(img,0,0, w, h);
+				
+				paint_snake();
+				paint_food(food.x,food.y,food.letter);
+			}
+		}
+		else if (control == "arrows") {
+			if(key == "37" && d != "right")d = "left";
+			else if(key == "38" && d != "down") d = "up";
+			else if(key == "39" && d != "left") d = "right";
+			else if(key == "40" && d != "up") d = "down";
+		}	
 		else if(key == "80") pauseGame();
 		//The snake is now keyboard controllable
+		if(key == "13"){
+			game_loop = clearTimeout(game_loop);
+			$('#myModal').modal('show');
+		}
 	})
 
 	
@@ -260,7 +295,7 @@ $(document).ready(function(){
 			game_loop = clearTimeout(game_loop);
 			gamePaused = true;
 		} else if (gamePaused) {
-			game_loop = setInterval(paint, 300);
+			game_loop = setInterval(paint, difficulty);
 			gamePaused = false;
 		}
 	}

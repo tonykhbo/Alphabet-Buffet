@@ -155,6 +155,7 @@ $(document).ready(function(){
 		//Lets paint the food
 		if (remaining_letters_in_array == 0){
 			init();
+			//clearInterval(game_loop);
 			return;
 		}
 		paint_food(food.x, food.y, food.letter);
@@ -175,18 +176,6 @@ $(document).ready(function(){
 			down:"img/grass%20env/60x60/snakehead-down.png"
 		}
 		img.src = options[d];
-//		if (d == "left") {
-//			img.src = "img/grass%20env/60x60/snakehead-left.png"
-//		}
-//		else if (d == "right") {
-//			img.src = "img/grass%20env/60x60/snakehead-right.png"
-//		}
-//                else if (d == "up") {
-//			img.src = "img/grass%20env/60x60/snakehead-up.png"
-//		}
-//		else if (d == "down") {
-//			img.src = "img/grass%20env/60x60/snakehead-down.png"
-//		}
                 ctx.drawImage(img,x*cw,y*cw);   
 		
 	}
@@ -242,3 +231,4 @@ $(document).ready(function(){
 	})
 
 })
+

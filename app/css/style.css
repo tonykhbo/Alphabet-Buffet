@@ -3,5 +3,29 @@ html, body {
   height: 100%;
   margin: 0px;
   overflow: hidden;
+
 }
 
+#myModal{
+	background-color:#9eb69c;
+
+}
+#content{
+	position:absolute;
+	left:50%;
+	margin-left:-400px;
+	width:800px;
+	width:auto;
+	height:auto;
+}
+#top{
+	width:auto;
+	height:auto;
+}
+
+#intro{
+	height:auto;
+	width:800px;
+	position:relative;
+	padding-bottom:25px;
+}

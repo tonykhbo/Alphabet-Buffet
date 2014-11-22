@@ -22,7 +22,11 @@ $(document).ready(function(){
 	
 	//Lets create the snake now
 	var snake_array; //an array of cells to make up the snake
-	var word_array = ["hello","cat","dog","elephant","school","orange","apple","green","red","blue","giraffe","skunk","cars","home"]
+	
+	//vocabulary arrays
+	var word_array = ["Bold","Chill","Doze","Fresh","Gift","Idea","Insect","Safe", "Search", "Skill", "Smooth", "Team", "Tower", "Travel", "Wise", "Artist", "Belt", "Blast", "Blue", "Bold", "Braid", "Bread", "Brush", "Cactus", "Candy", "Candy", "Chance", "Cherry", "Coal", "Corn", "Cotton", "Craft", "Crowd", "Disk", "Dress", "Dust", "Effort", "Enjoy", "Famous", "Flight", "Floss", "Friend", "Fruit", "Jelly", "Lemon", "Proud", "Success", "Thirsty", "Tulip", "Tunnel", "Violet"];
+	var space_word_array = ["Cosmic", "Capsule", "Space", "Meteor", "Alien", "Earth", "Rocket", "Comet", "Stars", "Moon", "Solar", "Asteroid", "Astronaut", "Gravity", "Eclipse", "Galaxy", "Rays", "Lunar", "Nebula", "Nova", "Orbit", "Ozone", "Planet", "Revolve", "Satellite", "Solstice", "Mercury", "Venus", "Mars", "Sun", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Explore", "Voyage", "Rover", "NASA", "Shuttle", "Launch", "Rings", "Mission", "Dipper", "Aurora", "Crater", "Cosmo", "Telescope", "Pilot", "Sunspot"];
+	var underwater_word_array = ["Diver", "Scuba", "Fish", "Marine", "Pearl", "Starfish", "Shark", "Coral", "Reef", "Fins", "Goggles", "Ocean", "Lake", "Sea", "Snorkel", "Algae", "Barnacle", "Clam", "Dolpin", "Conch", "Currents", "Crab", "Flouder", "Squid", "Jellyfish", "Kelp", "Lobster", "Manatee", "Mussel", "Narwhal", "Octopus", "Otter", "Oyster", "Sponge", "Squid", "Tuna", "Tides", "Urchin", "Waves", "Whale", "Swim", "Float", "Dive", "Ship", "Boat", "Stingray", "Trench", "Plankton"];
 	
 	function init()
 	{

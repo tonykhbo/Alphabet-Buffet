@@ -33,23 +33,56 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title" id="myModalLabel">Start Menu</h4>
+                  <h2 class="modal-title" id="myModalLabel">ALPHABET BUFFET</h2>
                 </div>
-                <div class="modal-body row">
-                    <div class="col-md-6">
-                        <h4>Background Environment</h4>
+                <div class="modal-body">
+                    <div class="row environment-div">
+                        <div class="col-xs-6">
+                            <h4>Background Environment</h4>
+                        </div>
+                        <div class="col-xs-6">
+                            <select class="form-control environment">
+                                <option value="grass">Grassy Area</option>
+                                <option value="space">Outer space</option>
+                                <option value="underwater">Under the Sea</option>
+                            </select>
+                        </div>                  
+                    </div> 
+                    <div class="row difficulty-div">
+                        <div class="col-xs-6">
+                            <h4>Snake Speed</h4>
+                        </div>
+                        <div class="col-xs-6">
+                            <select class="form-control difficulty">
+                                <option value="500">Super Slow</option>
+                                <option value="400">Slow</option>
+                                <option value="300">Normal</option>
+                                <option value="200">Fast</option>
+                                <option value="100">Very Fast</option>
+                            </select>
+                        </div>                  
                     </div>
-                    <div class="col-md-6">
-                        <select class="form-control">
-                            <option value="grass">Grassy Area</option>
-                            <option value="space">Outer space</option>
-                            <option value="underwater">Under the Sea</option>
-                        </select>
-                    </div>                  
-                  
+                    
+                    <div class="row controls-div">
+                        <div class="col-xs-6">
+                            <h4>Keyboard Controls</h4>
+                        </div>
+                        <div class="col-xs-6">
+                            <select class="form-control controls">
+                                <option value="arrows">Directional Arrows</option>
+                                <option value="switch">Switch (Spacebar and Shift)</option>
+                            </select>
+                        </div>                  
+                    </div>
                 </div>
+                
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary custom-close">Start Game</button>
+                    <div>
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4"><button type="button" class="btn btn-primary custom-close start">Start Game</button></div>
+                        <div class="col-xs-4"></div> 
+                    </div>
+                    
                 </div>
               </div>
             </div>
@@ -61,6 +94,17 @@
             <img src="img/grass%20env/60x60/snakehead-right.png" width="60" height="60" alt="head_right" />
             <img src="img/grass%20env/60x60/snakehead-up.png" width="60" height="60" alt="head_up" />
             <img src="img/grass%20env/60x60/snakehead-down.png" width="60" height="60" alt="head_down" />
+            
+            <img src="img/space%20env/60x60/snakehead-left.png" width="60" height="60" alt="head_left" />
+            <img src="img/space%20env/60x60/snakehead-right.png" width="60" height="60" alt="head_right" />
+            <img src="img/space%20env/60x60/snakehead-up.png" width="60" height="60" alt="head_up" />
+            <img src="img/space%20env/60x60/snakehead-down.png" width="60" height="60" alt="head_down" />
+            
+            <img src="img/underwater%20env/60x60/snakehead-left.png" width="60" height="60" alt="head_left" />
+            <img src="img/underwater%20env/60x60/snakehead-right.png" width="60" height="60" alt="head_right" />
+            <img src="img/underwater%20env/60x60/snakehead-up.png" width="60" height="60" alt="head_up" />
+            <img src="img/underwater%20env/60x60/snakehead-down.png" width="60" height="60" alt="head_down" />
+            
             <img src="img/letters/a.png" width="60" height="60" alt="a" />
             <img src="img/letters/b.png" width="60" height="60" alt="b" />
             <img src="img/letters/c.png" width="60" height="60" alt="c" />
@@ -88,6 +132,8 @@
             <img src="img/letters/y.png" width="60" height="60" alt="y" />
             <img src="img/letters/z.png" width="60" height="60" alt="z" />
             <img src="img/grass%20env/grassbg.png" width="60" height="60" alt="grass background" />
+            <img src="img/space%20env/spacebg.png" width="60" height="60" alt="grass background" />
+            <img src="img/underwater%20env/underwaterbg.png" width="60" height="60" alt="grass background" />
         </div>
 </body>
 </html>

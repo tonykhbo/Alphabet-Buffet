@@ -625,7 +625,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap's JavaScript req
   Modal.VERSION  = '3.2.0'
 
   Modal.DEFAULTS = {
-    backdrop: true,
+    backdrop: 'static',
     keyboard: true,
     show: true
   }

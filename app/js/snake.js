@@ -10,6 +10,7 @@ $(document).ready(function(){
 	var letter_location_in_array = 0;
 	var snake_letter_array;
 	var snake_word_body_length;
+	var gamePaused = false;
 	
 	
 	//Lets save the cell width in a variable for easy control
@@ -20,6 +21,11 @@ $(document).ready(function(){
 	var word;
 	var token;
 	
+	//START MENU VARIABLES
+	var bg;
+	var difficulty;
+	var control;
+	
 	//Lets create the snake now
 	var snake_array; //an array of cells to make up the snake
 	
@@ -28,8 +34,19 @@ $(document).ready(function(){
 	var space_word_array = ["Cosmic", "Capsule", "Space", "Meteor", "Alien", "Earth", "Rocket", "Comet", "Stars", "Moon", "Solar", "Asteroid", "Astronaut", "Gravity", "Eclipse", "Galaxy", "Rays", "Lunar", "Nebula", "Nova", "Orbit", "Ozone", "Planet", "Revolve", "Satellite", "Solstice", "Mercury", "Venus", "Mars", "Sun", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Explore", "Voyage", "Rover", "NASA", "Shuttle", "Launch", "Rings", "Mission", "Dipper", "Aurora", "Crater", "Cosmo", "Telescope", "Pilot", "Sunspot"];
 	var underwater_word_array = ["Diver", "Scuba", "Fish", "Marine", "Pearl", "Starfish", "Shark", "Coral", "Reef", "Fins", "Goggles", "Ocean", "Lake", "Sea", "Snorkel", "Algae", "Barnacle", "Clam", "Dolpin", "Conch", "Currents", "Crab", "Flouder", "Squid", "Jellyfish", "Kelp", "Lobster", "Manatee", "Mussel", "Narwhal", "Octopus", "Otter", "Oyster", "Sponge", "Squid", "Tuna", "Tides", "Urchin", "Waves", "Whale", "Swim", "Float", "Dive", "Ship", "Boat", "Stingray", "Trench", "Plankton"];
 	
-	function init()
+	$(".start").click(start);
+	
+	function start()
 	{
+		//START MENU
+	
+		//game background
+		bg = $(".environment").val();
+		//speed of the snake
+		difficulty = $(".difficulty").val();
+		//switch or directional
+		control = $(".control").val();
+		
 		d = "right"; //default direction
 		create_snake();
 		
@@ -48,7 +65,7 @@ $(document).ready(function(){
 		if(typeof game_loop != "undefined") clearInterval(game_loop);
 		game_loop = setInterval(paint, 300);
 	}
-	init();
+	//init();
 	
 	function create_snake()
 	{
@@ -81,7 +98,7 @@ $(document).ready(function(){
 		//To avoid the snake trail we need to paint the BG on every frame
 		//Lets paint the canvas now
 		var img = new Image();
-		img.src = "img/grass%20env/grassbg.png"
+		img.src = "img/"+bg+"%20env/"+bg+"bg.png"
                 ctx.drawImage(img,0,0, w, h);
 		//ctx.fillStyle = "white";
 		//ctx.fillRect(0, 0, w , h );
@@ -158,8 +175,10 @@ $(document).ready(function(){
 		
 		//Lets paint the food
 		if (remaining_letters_in_array == 0){
-			init();
-			//clearInterval(game_loop);
+			game_loop = clearTimeout(game_loop);
+			var pause;
+			//wait before starting with new word;
+			pause = setTimeout(start, 5000);
 			return;
 		}
 		paint_food(food.x, food.y, food.letter);
@@ -174,10 +193,10 @@ $(document).ready(function(){
 	{
 		var img = new Image();
 		var options = {
-			left:"img/grass%20env/60x60/snakehead-left.png",
-			right:"img/grass%20env/60x60/snakehead-right.png",
-			up:"img/grass%20env/60x60/snakehead-up.png",
-			down:"img/grass%20env/60x60/snakehead-down.png"
+			left:"img/"+bg+"%20env/60x60/snakehead-left.png",
+			right:"img/"+bg+"%20env/60x60/snakehead-right.png",
+			up:"img/"+bg+"%20env/60x60/snakehead-up.png",
+			down:"img/"+bg+"%20env/60x60/snakehead-down.png"
 		}
 		img.src = options[d];
                 ctx.drawImage(img,x*cw,y*cw);   
@@ -231,8 +250,23 @@ $(document).ready(function(){
 		else if(key == "38" && d != "down") d = "up";
 		else if(key == "39" && d != "left") d = "right";
 		else if(key == "40" && d != "up") d = "down";
+		else if(key == "80") pauseGame();
 		//The snake is now keyboard controllable
 	})
 
+	
+	function pauseGame() {
+		if (!gamePaused) {
+			game_loop = clearTimeout(game_loop);
+			gamePaused = true;
+		} else if (gamePaused) {
+			game_loop = setInterval(paint, 300);
+			gamePaused = false;
+		}
+	}
+
+	
+	
+	
 })
 

@@ -59,6 +59,7 @@ $(document).ready(function(){
 		
 		//randomizing the selection of the word in the word array
 		word = word_array[Math.floor(Math.random() * word_array.length-1) + 0];
+		word = word.toLowerCase();
 		token = word.split("");
 		letter_location_in_array = 0;
 		create_food(); //Now we can see the food particle
@@ -221,7 +222,7 @@ $(document).ready(function(){
 	{
 
 		var img = new Image();
-		img.src = "img/letters/"+token[letter_location-1].toLowerCase()+".png"
+		img.src = "img/letters/"+token[letter_location-1]+".png"
                 ctx.drawImage(img,x*cw,y*cw);
 	}
 	

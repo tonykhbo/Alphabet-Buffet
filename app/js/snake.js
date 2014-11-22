@@ -221,7 +221,7 @@ $(document).ready(function(){
 	{
 
 		var img = new Image();
-		img.src = "img/letters/"+token[letter_location-1]+".png"
+		img.src = "img/letters/"+token[letter_location-1].toLowerCase()+".png"
                 ctx.drawImage(img,x*cw,y*cw);
 	}
 	

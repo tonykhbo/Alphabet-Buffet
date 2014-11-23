@@ -74,7 +74,7 @@ $(document).ready(function () {
         snake_word_body_length = 0;
         score = 0;
 
-        // paint();
+        paint();
         //Lets move the snake now using a timer which will trigger the paint function
         //every 60ms
         if (typeof game_loop != "undefined") clearInterval(game_loop);

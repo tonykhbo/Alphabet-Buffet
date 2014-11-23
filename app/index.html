@@ -2,7 +2,9 @@
 
 <html>
 <head>
-    <title></title>
+    <title>Alphabet Buffet</title>
+    <link rel="shortcut icon" href="img/browsericon.ico">
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     
     <script src="js/snake.js"></script>
@@ -23,6 +25,13 @@
             $('#myModal').modal('hide');
         });
     });
+    function change() {
+    	var bg = document.getElementById("environment").value;
+    	if (bg == "space") document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/Pu5ef6w.jpg')";
+		else if (bg == "grass") document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/6XpxhF8.jpg')";
+		else if (bg == "underwater") document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/fMrMSlU.jpg')";
+		else if (bg == "school") document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/zUm1T50.jpg')";
+	}
 </script>
 
 
@@ -30,6 +39,7 @@
         <canvas id="canvas"></canvas>
         
         <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="main">
             <div class="modal-dialog" id="content">
               <div class="modal-content">
                 <div class="modal-header" id="top">
@@ -46,9 +56,9 @@
                             <h4>Background Environment</h4>
                         </div>
                         <div class="col-xs-6">
-                            <select class="form-control environment">
+                            <select class="form-control environment" id="environment" onchange="change()">
                                 <option value="grass" selected="selected">Grassy Area</option>
-                                <option value="space">Outer space</option>
+                                <option value="space">Outer Space</option>
                                 <option value="underwater">Under the Sea</option>
                                 <option value="school">School Classroom</option>
                             </select>
@@ -91,6 +101,7 @@
                     
                 </div>
               </div>
+            </div>
             </div>
           </div>
         

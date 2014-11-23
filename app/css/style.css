@@ -14,7 +14,9 @@ html, body {
 	height:100%;
 	width:100%;
 	background-color:#9eb69c;
-	background-image:url("http://i.imgur.com/6XpxhF8.jpg");
+	background-image:url("http://i.imgur.com/IU9BPdx.jpg");
+	background-position:top-left;
+	background-repeat:none;
 	z-index: 1;
 }
 

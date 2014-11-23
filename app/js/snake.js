@@ -41,7 +41,7 @@ $(document).ready(function(){
 	function start()
 	{
 		//START MENU
-	
+		
 		//game background
 		bg = $(".environment").val();
 		//speed of the snake
@@ -173,7 +173,9 @@ $(document).ready(function(){
 			$('#word_modal').modal('show');
 			pause = setTimeout(start, 5000);
 			$("#word_modal").modal('hide');
-			return;
+			var r = confirm("You spelled: " + word + "!\nPlay again?");
+			if (r == true) return;
+			else location.reload();
 		}
 		paint_food(food.x, food.y, food.letter);
 		//Lets paint the score

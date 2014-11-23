@@ -4,6 +4,9 @@ html, body {
   margin: 0px;
   overflow: hidden;
   background-color:#ffffff;
+  background-image:url("http://i.imgur.com/IU9BPdx.jpg");
+  background-position:top-left;
+  background-repeat:none;
 
 }
 

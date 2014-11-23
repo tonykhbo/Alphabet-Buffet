@@ -27,10 +27,22 @@
     });
     function change() {
     	var bg = document.getElementById("environment").value;
-    	if (bg == "space") document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/a8ycsKe.jpg')";
-		else if (bg == "grass") document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/IU9BPdx.jpg')";
-		else if (bg == "underwater") document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/fMrMSlU.jpg')";
-		else if (bg == "school") document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/QjODvOR.jpg')";
+        if (bg == "space"){
+            document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/a8ycsKe.jpg')";
+            document.body.style.backgroundImage = "url('http://i.imgur.com/a8ycsKe.jpg')";
+        } 
+        else if (bg == "grass"){
+            document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/IU9BPdx.jpg')";
+            document.body.style.backgroundImage = "url('http://i.imgur.com/IU9BPdx.jpg')";
+        }
+        else if (bg == "underwater"){
+            document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/fMrMSlU.jpg')";
+            document.body.style.backgroundImage = "url('http://i.imgur.com/fMrMSlU.jpg')";
+        } 
+        else if (bg == "school"){
+            document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/QjODvOR.jpg')";
+            document.body.style.backgroundImage = "url('http://i.imgur.com/QjODvOR.jpg')";
+        } 
 	}
 </script>
 

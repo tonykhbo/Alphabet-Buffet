@@ -43,6 +43,7 @@ $(document).ready(function(){
 		//START MENU
 		
 		//game background
+
 		bg = $(".environment").val();
 		//speed of the snake
 		difficulty = $(".difficulty").val();
@@ -62,6 +63,8 @@ $(document).ready(function(){
 		word = word.toLowerCase();
 		token = word.split("");
 		letter_location_in_array = 0;
+		document.getElementById("win").style.display = "none";
+		document.getElementById("win").innerHTML= "You spelled <b>" + word + "</b>!<br><br>Get ready for another word!";
 		create_food(); //Now we can see the food particle
 		//finally lets display the score
 		remaining_letters_in_array = token.length;
@@ -170,12 +173,13 @@ $(document).ready(function(){
 			var pause;
 			//wait before starting with new word;
 			//$("#word_spelt").html = "You spelled: "+word;
-			$('#word_modal').modal('show');
-			pause = setTimeout(start, 5000);
-			$("#word_modal").modal('hide');
-			var r = confirm("You spelled: " + word + "!\nPlay again?");
-			if (r == true) return;
-			else location.reload();
+			//$('#word_modal').modal('show');
+			pause = setTimeout(start, 2000);
+
+			document.getElementById("win").style.display = "block";
+			pause = setTimeout(start, 2000);
+			//$("#word_modal").modal('hide');
+			return;
 		}
 		paint_food(food.x, food.y, food.letter);
 		//Lets paint the score

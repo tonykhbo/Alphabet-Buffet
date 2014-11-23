@@ -66,7 +66,7 @@ $(document).ready(function () {
         token = word.split("");
         letter_location_in_array = 0;
         document.getElementById("win").style.display = "none";
-        document.getElementById("win").innerHTML = "You spelled <b>" + word + "</b>!<br><br>Get ready for another word!";
+        document.getElementById("win").innerHTML = "You spelled <b>" + word.toUpperCase() + "</b>!<br><br>Get ready for another word!";
         create_food(); //Now we can see the food particle
         //finally lets display the score
         remaining_letters_in_array = token.length;
@@ -125,8 +125,12 @@ $(document).ready(function () {
 
     //Lets paint the snake now
     function paint() {
-
-        use_AI();       // Using the AI to play the game
+	if (degree == 0) {
+		use_AI();       // Using the AI to play the game
+	}
+        else if (degree == 1) {
+		use_TurnBase();
+	}
 
         //To avoid the snake trail we need to paint the BG on every frame
         //Lets paint the canvas now
@@ -192,10 +196,10 @@ $(document).ready(function () {
             //wait before starting with new word;
             //$("#word_spelt").html = "You spelled: "+word;
             //$('#word_modal').modal('show');
-            pause = setTimeout(start, 2000);
+            pause = setTimeout(start, 4000);
 
             document.getElementById("win").style.display = "block";
-            pause = setTimeout(start, 2000);
+            pause = setTimeout(start, 4000);
             //$("#word_modal").modal('hide');
             return;
         }

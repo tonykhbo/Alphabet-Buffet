@@ -45,6 +45,7 @@ html, body {
 
 #win{
 	font-size:30px;
+	padding:10px;
 	color:#000;
 	display:none;
 	position:absolute;
@@ -52,8 +53,8 @@ html, body {
 	left:50%;
 	margin-left:-200px;
 	top:50%;
-	margin-top:-100px;
-	height:200px;
+	margin-top:-75px;
+	height:auto;
 	width:400px;
 	background-image:url("http://i.imgur.com/IYkjtIB.png");
 	border:5px solid #ffffff;

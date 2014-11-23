@@ -25,6 +25,7 @@ $(document).ready(function () {
     var bg;
     var difficulty;
     var control;
+    var degree;
 
     //Lets create the snake now
     var snake_array; //an array of cells to make up the snake
@@ -48,7 +49,9 @@ $(document).ready(function () {
         difficulty = $(".difficulty").val();
         //switch or directional
         control = $(".controls").val();
-
+        //degree of freedom
+        degree = $(".degreeOfFreedom").val();
+        
         d = "right"; //default direction
         create_snake();
         //Changing vocabulary set based on setting 

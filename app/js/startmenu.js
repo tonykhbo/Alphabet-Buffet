@@ -4,3 +4,5 @@ var environment = $(".environment").val();
 var difficulty = $(".difficulty").val();
 //switch or directional
 var control = $(".control").val();
+//degree of freedom
+var degree = $(".degreeOfFreedom").val();

@@ -68,7 +68,9 @@ $(document).ready(function () {
 	else if (bg == "custom") word_array = custom;
 
         //randomizing the selection of the word in the word array
-	var random = Math.floor(Math.random() * word_array.length - 1) + 0;
+	var max = word_array.length;
+	var min = 0;
+	var random = Math.floor(Math.random()*(max-min+1)+min);
         word = word_array[random];
         word = word.toLowerCase();
         token = word.split("");

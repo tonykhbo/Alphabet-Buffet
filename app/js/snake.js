@@ -48,7 +48,7 @@ $(document).ready(function () {
         bg = $(".environment").val();
         if (bg=="custom"){
 			var cus = document.getElementById("customWords").value;
-			custom = cus.split(/[ ,]+/);
+			custom = cus.split(/[ ,]+/).filter(Boolean);;
 	}
         difficulty = $(".difficulty").val();
         //switch or directional

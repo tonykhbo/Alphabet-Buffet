@@ -50,7 +50,7 @@ $(document).ready(function () {
         //switch or directional
         control = $(".controls").val();
         //degree of freedom
-        degree = $(".degreeOfFreedom").val();
+        degree = $(".degrees").val();
         
         d = "right"; //default direction
         create_snake();
@@ -125,10 +125,10 @@ $(document).ready(function () {
 
     //Lets paint the snake now
     function paint() {
-	if (degree == 0) {
+	if (parseInt(degree) == 0) {
 		use_AI();       // Using the AI to play the game
 	}
-        else if (degree == 1) {
+        else if (parseInt(degree) == 1) {
 		use_TurnBase();
 	}
 

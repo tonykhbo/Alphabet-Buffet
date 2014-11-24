@@ -51,7 +51,7 @@ $(document).ready(function () {
         control = $(".controls").val();
         //degree of freedom
         degree = $(".degrees").val();
-        
+
         d = "right"; //default direction
         create_snake();
         //Changing vocabulary set based on setting 
@@ -77,8 +77,10 @@ $(document).ready(function () {
         paint();
         //Lets move the snake now using a timer which will trigger the paint function
         //every 60ms
-        if (typeof game_loop != "undefined") clearInterval(game_loop);
-        game_loop = setInterval(paint, difficulty);
+        if (parseInt(degree) != 1) {
+            if (typeof game_loop != "undefined") clearInterval(game_loop);
+            game_loop = setInterval(paint, difficulty);
+        }
     }
     //init();
 
@@ -125,12 +127,9 @@ $(document).ready(function () {
 
     //Lets paint the snake now
     function paint() {
-	if (parseInt(degree) == 0) {
-		use_AI();       // Using the AI to play the game
-	}
-        else if (parseInt(degree) == 1) {
-		use_TurnBase();
-	}
+        if (parseInt(degree) == 0) {
+            use_AI();       // Using the AI to play the game
+        }
 
         //To avoid the snake trail we need to paint the BG on every frame
         //Lets paint the canvas now
@@ -317,7 +316,9 @@ $(document).ready(function () {
 
         }
 
-        //  paint();
+        if (parseInt(degree) == 1) {
+            paint();
+        }
     })
 
 

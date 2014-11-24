@@ -11,7 +11,7 @@ $(document).ready(function () {
     var snake_letter_array;
     var snake_word_body_length;
     var gamePaused = false;
-
+    var displayWin = false;
 
     //Lets save the cell width in a variable for easy control
     var cw = 60;
@@ -56,6 +56,8 @@ $(document).ready(function () {
         //degree of freedom
         degree = $(".degrees").val();
 
+        displayWin = false;
+
         d = "right"; //default direction
         create_snake();
         //Changing vocabulary set based on setting 
@@ -83,8 +85,8 @@ $(document).ready(function () {
         paint();
         //Lets move the snake now using a timer which will trigger the paint function
         //every 60ms
+        if (typeof game_loop != "undefined") clearInterval(game_loop);
         if (parseInt(degree) != 1) {
-            if (typeof game_loop != "undefined") clearInterval(game_loop);
             game_loop = setInterval(paint, difficulty);
         }
     }
@@ -205,13 +207,17 @@ $(document).ready(function () {
 
         //Lets paint the food
         if (remaining_letters_in_array == 0) {
-            game_loop = clearTimeout(game_loop);
+
+            if (parseInt(degree) != 1) {
+                game_loop = clearTimeout(game_loop);
+            }
+
             var pause;
             //wait before starting with new word;
             //$("#word_spelt").html = "You spelled: "+word;
             //$('#word_modal').modal('show');
-            pause = setTimeout(start, 4000);
-
+            // pause = setTimeout(start, 4000);
+            displayWin = true;
             document.getElementById("win").style.display = "block";
             pause = setTimeout(start, 4000);
             //$("#word_modal").modal('hide');
@@ -310,6 +316,9 @@ $(document).ready(function () {
     var arrows_index = 0;
     $(document).keydown(function (e) {
 
+        if (displayWin) {
+            return;
+        }
         var key = e.which;
         //We will add another clause to prevent reverse gear
         if (control == "switch") {

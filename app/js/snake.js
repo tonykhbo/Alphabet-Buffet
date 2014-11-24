@@ -48,7 +48,7 @@ $(document).ready(function () {
         bg = $(".environment").val();
         if (bg=="custom"){
 			var cus = document.getElementById("customWords").value;
-			custom = cus.split(" ");
+			custom = cus.split(/[ ,]+/);
 	}
         difficulty = $(".difficulty").val();
         //switch or directional
@@ -66,7 +66,8 @@ $(document).ready(function () {
 	else if (bg == "custom") word_array = custom;
 
         //randomizing the selection of the word in the word array
-        word = word_array[Math.floor(Math.random() * word_array.length - 1) + 0];
+	var random = Math.floor(Math.random() * word_array.length - 1) + 0;
+        word = word_array[random];
         word = word.toLowerCase();
         token = word.split("");
         letter_location_in_array = 0;

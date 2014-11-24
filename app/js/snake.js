@@ -34,7 +34,8 @@ $(document).ready(function(){
 	var space = ["Cosmic", "Capsule", "Space", "Meteor", "Alien", "Earth", "Rocket", "Comet", "Stars", "Moon", "Solar", "Asteroid", "Astronaut", "Gravity", "Eclipse", "Galaxy", "Rays", "Lunar", "Nebula", "Nova", "Orbit", "Ozone", "Planet", "Revolve", "Satellite", "Solstice", "Mercury", "Venus", "Mars", "Sun", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Explore", "Voyage", "Rover", "NASA", "Shuttle", "Launch", "Rings", "Mission", "Dipper", "Aurora", "Crater", "Cosmo", "Telescope", "Pilot", "Sunspot"];
 	var underwater = ["Diver", "Scuba", "Fish", "Marine", "Pearl", "Starfish", "Shark", "Coral", "Reef", "Fins", "Goggles", "Ocean", "Lake", "Sea", "Snorkel", "Algae", "Barnacle", "Clam", "Dolpin", "Conch", "Currents", "Crab", "Flouder", "Squid", "Jellyfish", "Kelp", "Lobster", "Manatee", "Mussel", "Narwhal", "Octopus", "Otter", "Oyster", "Sponge", "Squid", "Tuna", "Tides", "Urchin", "Waves", "Whale", "Swim", "Float", "Dive", "Ship", "Boat", "Stingray", "Trench", "Plankton"];
 	var school = ["Pencil", "Pen", "Notes", "Scissors", "Paper", "Folder", "Books", "Computer", "Clock", "Board", "Markers", "Teacher", "Chair", "Desk", "Ruler", "Notebook", "Backpack", "Calendar", "Schedule", "Highlight", "Quiz", "Test", "Homework", "Student", "Eraser", "Learn", "Study", "Reading", "Laptop", "Agenda", "Lunch", "Recess", "Math", "Science", "History", "English", "Numbers", "Project", "Report", "Essay", "Grades", "Gym", "Music", "Locker", "Tape", "Paperclip", "Friends", "School", "Class", "Clubs"];
-	
+	var custom;
+
 	var word_array;
 	$(".start").click(start);
 	
@@ -45,6 +46,10 @@ $(document).ready(function(){
 		//game background
 
 		bg = $(".environment").val();
+		if (bg=="custom"){
+			var cus = document.getElementById("customWords").value;
+			custom = cus.split(" ");
+		}
 		//speed of the snake
 		difficulty = $(".difficulty").val();
 		//switch or directional
@@ -57,6 +62,7 @@ $(document).ready(function(){
 		else if (bg == "space") word_array = space;
 		else if (bg == "underwater") word_array = underwater;
 		else if (bg == "school") word_array = school;
+		else if (bg == "custom") word_array = custom;
 		
 		//randomizing the selection of the word in the word array
 		word = word_array[Math.floor(Math.random() * word_array.length-1) + 0];
@@ -110,8 +116,16 @@ $(document).ready(function(){
 		//To avoid the snake trail we need to paint the BG on every frame
 		//Lets paint the canvas now
 		var img = new Image();
-		img.src = "img/"+bg+"%20env/"+bg+"bg.png"
-                ctx.drawImage(img,0,0, w, h);
+		if (bg == "custom"){
+			var URL = document.getElementById("customBG").value;
+        	img.src = URL;
+		
+        }
+        else {
+        	img.src = "img/"+bg+"%20env/"+bg+"bg.png";
+                
+        }
+        ctx.drawImage(img,0,0, w, h);
 		//ctx.fillStyle = "white";
 		//ctx.fillRect(0, 0, w , h );
 		ctx.strokeStyle = "black";
@@ -212,12 +226,22 @@ $(document).ready(function(){
         
         function paint_head(x, y)
 	{
-		var img = new Image();
-		var options = {
+		if (bg == "custom"){
+			var img = new Image();
+			var options = {
+			left:"img/"+"grass"+"%20env/60x60/snakehead-left.png",
+			right:"img/"+"grass"+"%20env/60x60/snakehead-right.png",
+			up:"img/"+"grass"+"%20env/60x60/snakehead-up.png",
+			down:"img/"+"grass"+"%20env/60x60/snakehead-down.png"
+			}
+		}
+		else{var img = new Image();
+			var options = {
 			left:"img/"+bg+"%20env/60x60/snakehead-left.png",
 			right:"img/"+bg+"%20env/60x60/snakehead-right.png",
 			up:"img/"+bg+"%20env/60x60/snakehead-up.png",
 			down:"img/"+bg+"%20env/60x60/snakehead-down.png"
+			}	
 		}
 		img.src = options[d];
                 ctx.drawImage(img,x*cw,y*cw);   

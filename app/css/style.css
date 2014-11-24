@@ -7,7 +7,16 @@ html, body {
   background-image:url("http://i.imgur.com/IU9BPdx.jpg");
   background-position:top-left;
   background-repeat:none;
+}
 
+textarea {
+	width:200px;
+	height:70px;
+}
+
+input[type="text"] {
+	width:200px;
+	
 }
 
 #main{
@@ -43,6 +52,20 @@ html, body {
 	padding-bottom:25px;
 }
 
+#instr{
+	height:auto;
+	width:800px;
+	position:relative;
+	padding-bottom:25px;
+}
+#customEnv{
+	display:none;
+	height:auto;
+	width:800px;
+	position:relative;
+	padding-bottom:25px;
+}
+
 #win{
 	font-size:30px;
 	padding:10px;
@@ -56,7 +79,7 @@ html, body {
 	margin-top:-75px;
 	height:auto;
 	width:400px;
-	background-image:url("http://i.imgur.com/IYkjtIB.png");
+	background-image:url("http://i.imgur.com/3tm0mmN.png");
 	border:5px solid #ffffff;
 	
 }

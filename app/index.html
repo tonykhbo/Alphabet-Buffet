@@ -30,20 +30,33 @@
         if (bg == "space"){
             document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/a8ycsKe.jpg')";
             document.body.style.backgroundImage = "url('http://i.imgur.com/a8ycsKe.jpg')";
+            document.getElementById("customEnv").style.display = "none";
         } 
         else if (bg == "grass"){
             document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/IU9BPdx.jpg')";
             document.body.style.backgroundImage = "url('http://i.imgur.com/IU9BPdx.jpg')";
+            document.getElementById("customEnv").style.display = "none";
         }
         else if (bg == "underwater"){
             document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/fMrMSlU.jpg')";
             document.body.style.backgroundImage = "url('http://i.imgur.com/fMrMSlU.jpg')";
+            document.getElementById("customEnv").style.display = "none";
         } 
         else if (bg == "school"){
             document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/QjODvOR.jpg')";
             document.body.style.backgroundImage = "url('http://i.imgur.com/QjODvOR.jpg')";
+            document.getElementById("customEnv").style.display = "none";
         } 
+        else if (bg == "custom"){
+            document.getElementById("intro").innerHTML = "To make your own environment, enter a list of words into the text box below, and then enter the URL of a fun background!  Only use letters and separate each word with a space.  Remember to set the speed and controls below!";
+            document.getElementById("customEnv").style.display = "block";
+        }
 	}
+    function instructions(){
+        var a = document.getElementById("instructions").value;
+        if (a=="arrows") document.getElementById("instr").innerHTML = "<b>Instructions</b>:<br>Enter = main menu<br>P = pause<br>Use your arrow keys to move the snake!";
+        else if (a=="switch") document.getElementById("instr").innerHTML = "<b>Instructions</b>:<br>Enter = main menu<br>P = pause<br>Spacebar = Stop the snake<br>Shift = Change snake direction";
+    }
 </script>
 
 
@@ -64,7 +77,14 @@
 
 						Expand your vocabulary by playing a game! Alphabet Buffet brings together the worlds of gaming and education in one exciting place. Eat the letters as they appear on the screen to spell out words in different, fun environments! Do you like the outdoors? Then the grassy version might be for you. Interested in the stars? Try our new outerspace theme! Curious about the ocean? Our underwater theme might be the one for you.  Want to get into the school spirit?  The classroom theme is just for you! <br>
 					</div>
+                    <div id="customEnv">
+                        <textarea id="customWords">Put your words here!  Separate each word with a space.</textarea><br>
+                        <input type="text" id="customBG" value="Background Image URL">
 
+                    </div>
+                    <div id="instr">
+                        <b>Instructions</b>:<br>Enter = main menu<br>P = pause<br>Use your arrow keys to move the snake!
+                    </div>
                     <div class="row environment-div">
                         <div class="col-xs-6">
                             <h4>Background Environment</h4>
@@ -75,6 +95,7 @@
                                 <option value="space">Outer Space</option>
                                 <option value="underwater">Under the Sea</option>
                                 <option value="school">School Classroom</option>
+                                <option value="custom">Custom Environment</option>
                             </select>
                         </div>                  
                     </div> 
@@ -98,7 +119,7 @@
                             <h4>Keyboard Controls</h4>
                         </div>
                         <div class="col-xs-6">
-                            <select class="form-control controls">
+                            <select class="form-control controls" id="instructions" onchange="instructions()">
                                 <option value="arrows" selected="selected">Directional Arrows</option>
                                 <option value="switch">Switch (Spacebar and Shift)</option>
                             </select>

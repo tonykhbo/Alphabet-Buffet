@@ -55,7 +55,7 @@
     function instructions(){
         var a = document.getElementById("instructions").value;
         if (a=="arrows") document.getElementById("instr").innerHTML = "<b>Instructions</b>:<br>Enter = main menu<br>P = pause<br>Use your arrow keys to move the snake!";
-        else if (a=="switch") document.getElementById("instr").innerHTML = "<b>Instructions</b>:<br>Enter = main menu<br>P = pause<br>Spacebar = Stop the snake<br>Shift = Change snake direction";
+        else if (a=="switch") document.getElementById("instr").innerHTML = "<b>Instructions</b>:<br>Enter = main menu<br>P = pause<br>Spacebar = Stop the snake<br>Enter = Change snake direction";
     }
 </script>
 
@@ -119,7 +119,7 @@
                         <div class="col-xs-6">
                             <select class="form-control controls" id="instructions" onchange="instructions()">
                                 <option value="arrows" selected="selected">Directional Arrows</option>
-                                <option value="switch">Switch (Spacebar and Shift)</option>
+                                <option value="switch">Switch (Spacebar and Enter)</option>
                             </select>
                         </div>                  
                     </div>
@@ -140,7 +140,7 @@
                 
                 <div class="modal-footer">
                     <div id="instr" align="center">
-                        <b>Instructions</b>:<br>Enter = main menu<br>P = pause<br>Use your arrow keys to move the snake!
+                        <b>Instructions</b>:<br>Shift = main menu<br>P = pause<br>Use your arrow keys to move the snake!
                     </div>
                     <div align="center">
                         <div class="col-xs-4"><button type="button" class="btn btn-primary custom-close start">Play!</button></div>

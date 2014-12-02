@@ -325,7 +325,7 @@ $(document).ready(function () {
         //We will add another clause to prevent reverse gear
         if (control == "switch") {
             if (key == "32") pauseGame(); //spacebar
-            else if (key == "16") { //shift - rotate each click
+            else if (key == "13") { //enter - rotate each click
                 d = arrows[arrows_index];
                 arrows_index++;
                 if (arrows_index == 4) {
@@ -345,9 +345,9 @@ $(document).ready(function () {
             else if (key == "39" && d != "left") d = "right";
             else if (key == "40" && d != "up") d = "down";
         }
-        if (key == "80") pauseGame();
+        if (key == "80") pauseGame(); //80 is p
         //The snake is now keyboard controllable
-        if (key == "13") {
+        if (key == "16") { // 16 is shift
             $('#myModal').modal('show');
             game_loop = clearTimeout(game_loop);
 

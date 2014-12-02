@@ -3,6 +3,7 @@ html{
 }
 html, body {
   width:  100%;
+  height: auto;
   margin: 0px;
   overflow: hidden;
   background-color:#ffffff;
@@ -29,7 +30,7 @@ input[type="text"] {
 	position:absolute;
 	top:0px;
 	left:0px;
-	height:100%;
+	height:auto;
 	width:100%;
 	background-color:#9eb69c;
 	background-image:url("http://i.imgur.com/IU9BPdx.jpg");

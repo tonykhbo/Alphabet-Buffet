@@ -9,9 +9,7 @@
     
     <script src="js/snake.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
 
 </head>
@@ -51,7 +49,7 @@
             document.getElementById("intro").innerHTML = "To make your own environment, enter a list of words into the text box below, and then enter the URL of a fun background!  Only use letters and separate each word with a space.  Remember to set the speed and controls below!";
             document.getElementById("customEnv").style.display = "block";
         }
-	}
+    }
     function instructions(){
         var a = document.getElementById("instructions").value;
         if (a=="arrows") document.getElementById("instr").innerHTML = "<b>Instructions</b>:<br>Enter = main menu<br>P = pause<br>Use your arrow keys to move the snake!";

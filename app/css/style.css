@@ -1,6 +1,8 @@
+html{
+  height: auto;
+}
 html, body {
   width:  100%;
-  height: 100%;
   margin: 0px;
   overflow: hidden;
   background-color:#ffffff;
@@ -8,6 +10,9 @@ html, body {
   background-position:top-left;
   background-repeat:none;
   background-attachment: fixed;
+}
+body {
+  height: 100%;
 }
 
 textarea {

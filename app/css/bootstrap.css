@@ -5569,7 +5569,7 @@ button.close {
   opacity: 0;
 }
 .modal-backdrop.in {
-  filter: alpha(opacity=50);
+  filter: alpha(opacity=0);
   opacity: .5;
 }
 .modal-header {

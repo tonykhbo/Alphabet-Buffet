@@ -75,6 +75,8 @@ $(document).ready(function () {
         word = word.toLowerCase();
         token = word.split("");
         letter_location_in_array = 0;
+        document.getElementById("currentWord").style.display="block";
+        $('#currentWord').empty();
         document.getElementById("win").style.display = "none";
         document.getElementById("win").innerHTML = "You spelled <b>" + word.toUpperCase() + "</b>!<br><br>Get ready for another word!";
         create_food(); //Now we can see the food particle
@@ -189,13 +191,16 @@ $(document).ready(function () {
         //If the new head position matches with that of the food,
         //Create a new head instead of moving the tail
         if (nx == food.x && ny == food.y) {
+
             var tail = { x: nx, y: ny };
             score++;
+
             //Put letter into snake letter array to add to body of snake;
             //snake_letter_array.push(token[letter_location_in_array]);
             letter_location_in_array++;
             //snake_word_body_length++;
             //Create new food
+            document.getElementById("currentWord").innerHTML += token[letter_location_in_array-1].toUpperCase();
             create_food();
         }
         else {
@@ -225,6 +230,7 @@ $(document).ready(function () {
             //$("#word_modal").modal('hide');
             return;
         }
+
         paint_food(food.x, food.y, food.letter);
         //Lets paint the score
         var score_text = "Score: " + score;
@@ -281,6 +287,7 @@ $(document).ready(function () {
 
         var img = new Image();
         img.src = "img/letters/" + token[letter_location - 1] + ".png"
+        
         ctx.drawImage(img, x * cw, y * cw);
     }
 
@@ -297,6 +304,7 @@ $(document).ready(function () {
     }
 
     function paint_food(x, y, letter) {
+
         var img = new Image();
         img.src = "img/letters/" + letter + ".png"
         ctx.drawImage(img, x * cw, y * cw);

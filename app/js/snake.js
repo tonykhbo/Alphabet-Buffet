@@ -72,6 +72,10 @@ $(document).ready(function () {
 	var min = 0;
 	var random = Math.floor(Math.random()*(max-min+1)+min);
         word = word_array[random];
+	while (word == null){
+		random = Math.floor(Math.random()*(max-min+1)+min);
+		word = word_array[random];
+	}
         word = word.toLowerCase();
         token = word.split("");
         letter_location_in_array = 0;

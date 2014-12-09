@@ -379,10 +379,10 @@ $(document).ready(function () {
             }
         }
         else if (control == "arrows") {
-            if (key == "37" && d != "right") d = "left";
-            else if (key == "38" && d != "down") d = "up";
-            else if (key == "39" && d != "left") d = "right";
-            else if (key == "40" && d != "up") d = "down";
+            if (key == "37") d = "left";
+            else if (key == "38") d = "up";
+            else if (key == "39") d = "right";
+            else if (key == "40") d = "down";
         }
         if (key == "80") pauseGame(); //80 is p
         //The snake is now keyboard controllable

@@ -223,8 +223,9 @@ $(document).ready(function () {
             //snake_letter_array.push(token[letter_location_in_array]);
             letter_location_in_array++;
 
-            clearInterval(game_loop);
-
+            if (parseInt(degree) == 1) {
+                clearInterval(game_loop);
+            }
             //snake_word_body_length++;
             //Create new food
             document.getElementById("currentWord").innerHTML += token[letter_location_in_array - 1].toUpperCase();

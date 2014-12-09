@@ -20,6 +20,7 @@ $(document).ready(function () {
     var score;
     var word;
     var token;
+    var tmpAIvalue;
 
     //START MENU VARIABLES
     var bg;
@@ -37,7 +38,7 @@ $(document).ready(function () {
     var school = ["Pencil", "Pen", "Notes", "Scissors", "Paper", "Folder", "Books", "Computer", "Clock", "Board", "Markers", "Teacher", "Chair", "Desk", "Ruler", "Notebook", "Backpack", "Calendar", "Schedule", "Highlight", "Quiz", "Test", "Homework", "Student", "Eraser", "Learn", "Study", "Reading", "Laptop", "Agenda", "Lunch", "Recess", "Math", "Science", "History", "English", "Numbers", "Project", "Report", "Essay", "Grades", "Gym", "Music", "Locker", "Tape", "Paperclip", "Friends", "School", "Class", "Clubs"];
     var custom;
     var foodSound = document.getElementById("foodSounds")
-    
+
     var word_array;
     $(".start").click(start);
 
@@ -47,10 +48,10 @@ $(document).ready(function () {
         //game background
 
         bg = $(".environment").val();
-        if (bg=="custom"){
-			var cus = document.getElementById("customWords").value;
-			custom = cus.split(/[ ,\s]+/).filter(Boolean);;
-	}
+        if (bg == "custom") {
+            var cus = document.getElementById("customWords").value;
+            custom = cus.split(/[ ,\s]+/).filter(Boolean); ;
+        }
         difficulty = $(".difficulty").val();
         //switch or directional
         control = $(".controls").val();
@@ -66,21 +67,21 @@ $(document).ready(function () {
         else if (bg == "space") word_array = space;
         else if (bg == "underwater") word_array = underwater;
         else if (bg == "school") word_array = school;
-	else if (bg == "custom") word_array = custom;
+        else if (bg == "custom") word_array = custom;
 
         //randomizing the selection of the word in the word array
-	var max = word_array.length;
-	var min = 0;
-	var random = Math.floor(Math.random()*(max-min+1)+min);
+        var max = word_array.length;
+        var min = 0;
+        var random = Math.floor(Math.random() * (max - min + 1) + min);
         word = word_array[random];
-	while (word == null){
-		random = Math.floor(Math.random()*(max-min+1)+min);
-		word = word_array[random];
-	}
+        while (word == null) {
+            random = Math.floor(Math.random() * (max - min + 1) + min);
+            word = word_array[random];
+        }
         word = word.toLowerCase();
         token = word.split("");
         letter_location_in_array = 0;
-        document.getElementById("currentWord").style.display="block";
+        document.getElementById("currentWord").style.display = "block";
         $('#currentWord').empty();
         document.getElementById("win").style.display = "none";
         document.getElementById("win").innerHTML = "You spelled <b>" + word.toUpperCase() + "</b>!<br><br>Get ready for another word!";
@@ -118,6 +119,8 @@ $(document).ready(function () {
         else if (snake_array[0].y > food.y) {
             d = "up";
         }
+
+        tmpAIvalue = d;
     }
 
     function create_snake() {
@@ -148,19 +151,35 @@ $(document).ready(function () {
             use_AI();       // Using the AI to play the game
         }
 
+        if (parseInt(degree) == 1) {
+
+            if (d == "right" || d == "left") {
+                if (snake_array[0].x == food.x) {
+                    clearInterval(game_loop);
+                    return;
+                }
+            }
+
+            else if (d == "up" || d == "down") {
+                if (snake_array[0].y == food.y) {
+                    clearInterval(game_loop);
+                    return;
+                }
+            }
+        }
         //To avoid the snake trail we need to paint the BG on every frame
         //Lets paint the canvas now
         var img = new Image();
-	if (bg == "custom"){
-			var URL = document.getElementById("customBG").value;
-        	img.src = URL;
-		
+        if (bg == "custom") {
+            var URL = document.getElementById("customBG").value;
+            img.src = URL;
+
         }
         else {
-        	img.src = "img/"+bg+"%20env/"+bg+"bg.png";
-                
+            img.src = "img/" + bg + "%20env/" + bg + "bg.png";
+
         }
-	
+
         ctx.drawImage(img, 0, 0, w, h);
         //ctx.fillStyle = "white";
         //ctx.fillRect(0, 0, w , h );
@@ -203,9 +222,12 @@ $(document).ready(function () {
             //Put letter into snake letter array to add to body of snake;
             //snake_letter_array.push(token[letter_location_in_array]);
             letter_location_in_array++;
+
+            clearInterval(game_loop);
+
             //snake_word_body_length++;
             //Create new food
-            document.getElementById("currentWord").innerHTML += token[letter_location_in_array-1].toUpperCase();
+            document.getElementById("currentWord").innerHTML += token[letter_location_in_array - 1].toUpperCase();
             foodSound.pause();
             foodSound.currentTime = 0;
             foodSound.play();
@@ -267,35 +289,35 @@ $(document).ready(function () {
 
     //Lets first create a generic function to paint cells
 
-    function paint_head(x, y)
-	{
-		if (bg == "custom"){
-			var img = new Image();
-			var options = {
-			left:"img/"+"grass"+"%20env/60x60/snakehead-left.png",
-			right:"img/"+"grass"+"%20env/60x60/snakehead-right.png",
-			up:"img/"+"grass"+"%20env/60x60/snakehead-up.png",
-			down:"img/"+"grass"+"%20env/60x60/snakehead-down.png"
-			}
-		}
-		else{var img = new Image();
-			var options = {
-			left:"img/"+bg+"%20env/60x60/snakehead-left.png",
-			right:"img/"+bg+"%20env/60x60/snakehead-right.png",
-			up:"img/"+bg+"%20env/60x60/snakehead-up.png",
-			down:"img/"+bg+"%20env/60x60/snakehead-down.png"
-			}	
-		}
-		img.src = options[d];
-                ctx.drawImage(img,x*cw,y*cw);   
-		
-	}
+    function paint_head(x, y) {
+        if (bg == "custom") {
+            var img = new Image();
+            var options = {
+                left: "img/" + "grass" + "%20env/60x60/snakehead-left.png",
+                right: "img/" + "grass" + "%20env/60x60/snakehead-right.png",
+                up: "img/" + "grass" + "%20env/60x60/snakehead-up.png",
+                down: "img/" + "grass" + "%20env/60x60/snakehead-down.png"
+            }
+        }
+        else {
+            var img = new Image();
+            var options = {
+                left: "img/" + bg + "%20env/60x60/snakehead-left.png",
+                right: "img/" + bg + "%20env/60x60/snakehead-right.png",
+                up: "img/" + bg + "%20env/60x60/snakehead-up.png",
+                down: "img/" + bg + "%20env/60x60/snakehead-down.png"
+            }
+        }
+        img.src = options[d];
+        ctx.drawImage(img, x * cw, y * cw);
+
+    }
 
     function paint_cell(x, y, letter_location) {
 
         var img = new Image();
         img.src = "img/letters/" + token[letter_location - 1] + ".png"
-        
+
         ctx.drawImage(img, x * cw, y * cw);
     }
 
@@ -370,7 +392,27 @@ $(document).ready(function () {
         }
 
         if (parseInt(degree) == 1) {
-            paint();
+            if (d == "right" || d == "left") {
+
+                if ((d == "right" && snake_array[0].x < food.x) || (d == "left" && snake_array[0].x > food.x)) {
+                    //      || (d == "up" && snake_array[0].x < food.x) || (d == "down" && snake_array[0].x > food.x)) {*/
+                    //alert("hi");
+                    if (snake_array[0].x != food.x) {
+                        if (typeof game_loop != "undefined") clearInterval(game_loop);
+                        game_loop = setInterval(paint, difficulty);
+                    }
+                }
+            }
+
+            else if (d == "up" || d == "down") {
+
+                if ((d == "up" && snake_array[0].y > food.y) || (d == "down" && snake_array[0].y < food.y)) {
+                    if (snake_array[0].y != food.y) {
+                        if (typeof game_loop != "undefined") clearInterval(game_loop);
+                        game_loop = setInterval(paint, difficulty);
+                    }
+                }
+            }
         }
     })
 

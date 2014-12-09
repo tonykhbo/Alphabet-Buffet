@@ -53,7 +53,7 @@
     }
     function instructions(){
         var a = document.getElementById("instructions").value;
-        if (a=="arrows") document.getElementById("instr").innerHTML = "<b>Instructions</b>:<br>Enter = main menu<br>P = pause<br>Use your arrow keys to move the snake!";
+        if (a=="arrows") document.getElementById("instr").innerHTML = "<b>Instructions</b>:<br>Shift = main menu<br>P = pause<br>Use your arrow keys to move the snake!";
         else if (a=="switch") document.getElementById("instr").innerHTML = "<b>Instructions</b>:<br>Enter = main menu<br>P = pause<br>Spacebar = Stop the snake<br>Enter = Change snake direction";
     }
 </script>
@@ -225,4 +225,8 @@
             <img src="img/school%20env/schoolbg.png" width="60" height="60" alt="school background" />
         </div>
 </body>
+<audio id="foodSounds">
+    <source src="sound/food.mp3" type="audio/mp3" />
+    <source src="sound/food.ogg" type="audio/ogg"/>
+</audio>
 </html>

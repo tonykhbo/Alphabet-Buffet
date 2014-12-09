@@ -36,6 +36,7 @@ $(document).ready(function () {
     var underwater = ["Diver", "Scuba", "Fish", "Marine", "Pearl", "Starfish", "Shark", "Coral", "Reef", "Fins", "Goggles", "Ocean", "Lake", "Sea", "Snorkel", "Algae", "Barnacle", "Clam", "Dolphin", "Conch", "Currents", "Crab", "Flouder", "Squid", "Jellyfish", "Kelp", "Lobster", "Manatee", "Mussel", "Narwhal", "Octopus", "Otter", "Oyster", "Sponge", "Squid", "Tuna", "Tides", "Urchin", "Waves", "Whale", "Swim", "Float", "Dive", "Ship", "Boat", "Stingray", "Trench", "Plankton"];
     var school = ["Pencil", "Pen", "Notes", "Scissors", "Paper", "Folder", "Books", "Computer", "Clock", "Board", "Markers", "Teacher", "Chair", "Desk", "Ruler", "Notebook", "Backpack", "Calendar", "Schedule", "Highlight", "Quiz", "Test", "Homework", "Student", "Eraser", "Learn", "Study", "Reading", "Laptop", "Agenda", "Lunch", "Recess", "Math", "Science", "History", "English", "Numbers", "Project", "Report", "Essay", "Grades", "Gym", "Music", "Locker", "Tape", "Paperclip", "Friends", "School", "Class", "Clubs"];
     var custom;
+    var foodSound = document.getElementById("foodSounds")
     
     var word_array;
     $(".start").click(start);
@@ -205,6 +206,9 @@ $(document).ready(function () {
             //snake_word_body_length++;
             //Create new food
             document.getElementById("currentWord").innerHTML += token[letter_location_in_array-1].toUpperCase();
+            foodSound.pause();
+            foodSound.currentTime = 0;
+            foodSound.play();
             create_food();
         }
         else {

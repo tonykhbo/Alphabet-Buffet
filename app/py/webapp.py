@@ -45,4 +45,4 @@ bt.debug(True)
 #Set your host(Web Server IP) here, port 80 will only require you to type in the Web Server IP to access the web page
 
 if __name__ == '__main__':
-    bt.run(host='104.131.246.240', port=8080, debug=True)
+    bt.run(server='bjoern',host='104.131.246.240', port=8080, debug=True)

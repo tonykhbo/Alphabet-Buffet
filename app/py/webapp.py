@@ -35,6 +35,11 @@ def stylesheet(environment, size, filename):
     f = open('../img/'+ environment + '/' + size + '/' + filename )
     return f.read()
 
+@bt.route('/sound/<filename>', method = "GET")
+def stylesheet(filename):
+    f = open('../img/'+ filename )
+    return f.read()
+
 bt.debug(True)
 
 #Set your host(Web Server IP) here, port 80 will only require you to type in the Web Server IP to access the web page

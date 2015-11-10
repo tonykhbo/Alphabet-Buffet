@@ -26,9 +26,10 @@ def stylesheet(filename):
     return f.read()
 
 @bt.route('/img/<foldername>/<filename>', method = "GET")
-def stylesheet(filename):
+def stylesheet(filename, foldername):
     f = open('../img/'+ foldername + filename )
     return f.read()
+
 
 bt.debug(True)
 

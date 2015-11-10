@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import bottle as bt
+import paste
 
 #This file should be located in /YourApp/py/
 #Therefore, the file location should be /YourApp/py/webapp.py
@@ -45,4 +46,4 @@ bt.debug(True)
 #Set your host(Web Server IP) here, port 80 will only require you to type in the Web Server IP to access the web page
 
 if __name__ == '__main__':
-    bt.run(server='bjoern',host='104.131.246.240', port=8080, debug=True)
+    bt.run(server='paste',host='104.131.246.240', port=8080, debug=True)

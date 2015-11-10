@@ -25,11 +25,15 @@ def stylesheet(filename):
     f = open('../js/'+ filename )
     return f.read()
 
-@bt.route('/img/<foldername>/<filename>', method = "GET")
+@bt.route('/img/<environment>/<filename>', method = "GET")
 def stylesheet(filename, foldername):
     f = open('../img/'+ foldername + filename )
     return f.read()
 
+@bt.route('/img/<environment>/<size>/<filename>', method = "GET")
+def stylesheet(environment, size, filename):
+    f = open('../img/'+ environment + size + filename )
+    return f.read()
 
 bt.debug(True)
 

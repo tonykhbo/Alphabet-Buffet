@@ -1,3 +1,46 @@
+$(window).load(function(){
+        $('#myModal').modal('show');
+
+    });
+    
+    $(function () {
+        $(".custom-close").on('click', function() {
+            $('#myModal').modal('hide');
+        });
+    });
+    function change() {
+    	var bg = document.getElementById("environment").value;
+        if (bg == "space"){
+            document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/a8ycsKe.jpg')";
+            document.body.style.backgroundImage = "url('http://i.imgur.com/a8ycsKe.jpg')";
+            document.getElementById("customEnv").style.display = "none";
+        } 
+        else if (bg == "grass"){
+            document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/IU9BPdx.jpg')";
+            document.body.style.backgroundImage = "url('http://i.imgur.com/IU9BPdx.jpg')";
+            document.getElementById("customEnv").style.display = "none";
+        }
+        else if (bg == "underwater"){
+            document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/fMrMSlU.jpg')";
+            document.body.style.backgroundImage = "url('http://i.imgur.com/fMrMSlU.jpg')";
+            document.getElementById("customEnv").style.display = "none";
+        } 
+        else if (bg == "school"){
+            document.getElementById("main").style.backgroundImage = "url('http://i.imgur.com/QjODvOR.jpg')";
+            document.body.style.backgroundImage = "url('http://i.imgur.com/QjODvOR.jpg')";
+            document.getElementById("customEnv").style.display = "none";
+        } 
+        else if (bg == "custom"){
+            document.getElementById("intro").innerHTML = "To make your own environment, enter a list of words into the text box below, and then enter the URL of a fun background!  Only use letters and separate each word with a space.  Remember to set the speed and controls below!";
+            document.getElementById("customEnv").style.display = "block";
+        }
+    }
+    function instructions(){
+        var a = document.getElementById("instructions").value;
+        if (a=="arrows") document.getElementById("instr").innerHTML = "<b>Instructions</b>:<br>Shift = main menu<br>P = pause<br>Use your arrow keys to move the snake!";
+        else if (a=="switch") document.getElementById("instr").innerHTML = "<b>Instructions</b>:<br>Shift = main menu<br>P = pause<br>Spacebar = Stop the snake<br>Enter = Change snake direction";
+    }
+
 $(document).ready(function () {
     //Canvas stuff
     var canvas = $("#canvas")[0];
